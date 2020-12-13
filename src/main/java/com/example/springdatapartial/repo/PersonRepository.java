@@ -13,8 +13,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> ,PersonRepositoryDefault{
-
-  /**
+    
+	
+	/**
    * If not following Spring data naming convention like used findByAges instead of findByAge the
    * required fully path of PersonPartialDTO as followed by filled constructor
    *

@@ -2,6 +2,7 @@ package com.example.springdatapartial.repo;
 
 import com.example.springdatapartial.dto.PersonPartialDTO;
 import com.example.springdatapartial.dto.PersonView;
+import com.example.springdatapartial.entity.Person;
 import java.util.List;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
@@ -36,21 +37,20 @@ class PersonRepositoryTest {
     }
 
   }
-
-  @Test
-  void findByAge() {
-    final List<PersonPartialDTO> byAge = personRepository.findByAges(55);
-    byAge.stream().limit(20).forEach(System.out::println);
-    System.out.println("--------------------------------------");
-    Supplier<Stream<List<PersonPartialDTO>>> supplier = () -> Stream.of(byAge);
-    final List<String> firstName = supplier.get().findFirst().get().stream()
-        .map(PersonPartialDTO::getFirstName).distinct().collect(Collectors.toList());
-    final List<String> lastName = supplier.get().findFirst().get().stream()
-        .map(PersonPartialDTO::getLastName).distinct().collect(Collectors.toList());
-
-    System.out.println(firstName.size()+" "+firstName);
-    System.out.println(lastName.size()+"  "+lastName);
-  }
+	/*
+	 * @Test void findByAge() { final List<PersonPartialDTO> byAge =
+	 * personRepository.findByAges(55);
+	 * byAge.stream().limit(20).forEach(System.out::println);
+	 * System.out.println("--------------------------------------");
+	 * Supplier<Stream<List<PersonPartialDTO>>> supplier = () -> Stream.of(byAge);
+	 * final List<String> firstName = supplier.get().findFirst().get().stream()
+	 * .map(PersonPartialDTO::getFirstName).distinct().collect(Collectors.toList());
+	 * final List<String> lastName = supplier.get().findFirst().get().stream()
+	 * .map(PersonPartialDTO::getLastName).distinct().collect(Collectors.toList());
+	 * 
+	 * System.out.println(firstName.size()+" "+firstName);
+	 * System.out.println(lastName.size()+"  "+lastName); }
+	 */
 
   @Test
   void findViewByFirstName() {
@@ -91,5 +91,11 @@ class PersonRepositoryTest {
     final List<Integer> distinctAge = personRepository.findAllDistinctByAge();
     System.out.println(distinctAge);
 
+  }
+
+  @Test
+  void findTop(){
+    System.out.println( personRepository.readTopByOrderByIdDesc());
+    System.out.println( personRepository.getTopByOrderByIdAsc());
   }
 }
