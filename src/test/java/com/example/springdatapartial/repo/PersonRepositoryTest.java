@@ -98,4 +98,14 @@ class PersonRepositoryTest {
     System.out.println( personRepository.readTopByOrderByIdDesc());
     System.out.println( personRepository.getTopByOrderByIdAsc());
   }
+
+  @Test
+  void findByFirstNameLike(){
+    System.out.println(personRepository.findByFirstNameLike("Carly"));
+  }
+
+  @Test
+  void findByFirstNameContaining(){
+    System.out.println(personRepository.findByFirstNameContaining("Carly"));
+  }
 }

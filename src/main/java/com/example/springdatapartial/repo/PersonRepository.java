@@ -13,18 +13,20 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PersonRepository extends JpaRepository<Person, Integer> ,PersonRepositoryDefault{
-    
-	
-	/**
-   * If not following Spring data naming convention like used findByAges instead of findByAge the
-   * required fully path of PersonPartialDTO as followed by filled constructor
-   *
-   * @param age
-   * @return
-   */
+
+  List<PersonPartialDTO> findByFirstNameLike(String firstName);
+  List<PersonPartialDTO> findByFirstNameContaining(String firstName);
+
+
+  /**
+ * If not following Spring data naming convention like used findByAges instead of findByAge the
+ * required fully path of PersonPartialDTO as followed by filled constructor
+ *
+ * @param age
+ * @return
+ */
   @Query("SELECT new com.example.springdatapartial.dto.PersonPartialDTO(p.firstName,p.lastName) FROM Person p")
   List<PersonPartialDTO> findByAges(int age);
-
   /**
    * not required fully path of PersonPartialDTO
    *

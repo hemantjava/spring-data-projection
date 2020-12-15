@@ -25,6 +25,6 @@ public class SpringDataPartialApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		List<Person> personList = DummyData.getPeople();
 		final List<Person> list = personRepository.saveAll(personList);
-		//log.info("Record inserted : {}",list.size());
+		log.info("Record inserted : {}",list.size());
 	}
 }
