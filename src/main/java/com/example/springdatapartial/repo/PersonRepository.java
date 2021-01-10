@@ -26,7 +26,7 @@ public interface PersonRepository extends JpaRepository<Person, Integer> ,Person
  * @return
  */
   @Query("SELECT new com.example.springdatapartial.dto.PersonPartialDTO(p.firstName,p.lastName) FROM Person p")
-  List<PersonPartialDTO> findByAges(int age);
+  List<PersonPartialDTO> findBy(int age);
   /**
    * not required fully path of PersonPartialDTO
    *

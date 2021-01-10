@@ -31,26 +31,19 @@ class PersonRepositoryTest {
 
   @Test
   void findByAges() {
-    final List<PersonPartialDTO> byAge = personRepository.findByAges(55);
+    final List<PersonPartialDTO> byAge = personRepository.findBy(55);
     for (PersonPartialDTO dto : byAge) {
       System.out.println(dto);
     }
-
   }
-	/*
-	 * @Test void findByAge() { final List<PersonPartialDTO> byAge =
-	 * personRepository.findByAges(55);
-	 * byAge.stream().limit(20).forEach(System.out::println);
-	 * System.out.println("--------------------------------------");
-	 * Supplier<Stream<List<PersonPartialDTO>>> supplier = () -> Stream.of(byAge);
-	 * final List<String> firstName = supplier.get().findFirst().get().stream()
-	 * .map(PersonPartialDTO::getFirstName).distinct().collect(Collectors.toList());
-	 * final List<String> lastName = supplier.get().findFirst().get().stream()
-	 * .map(PersonPartialDTO::getLastName).distinct().collect(Collectors.toList());
-	 * 
-	 * System.out.println(firstName.size()+" "+firstName);
-	 * System.out.println(lastName.size()+"  "+lastName); }
-	 */
+
+  @Test
+  void findByAge() {
+    final List<PersonPartialDTO> byAge = personRepository.findByAge(55);
+    for (PersonPartialDTO dto : byAge) {
+      System.out.println(dto);
+    }
+  }
 
   @Test
   void findViewByFirstName() {
@@ -99,13 +92,26 @@ class PersonRepositoryTest {
     System.out.println( personRepository.getTopByOrderByIdAsc());
   }
 
+  /**
+   * exact match
+   */
   @Test
   void findByFirstNameLike(){
     System.out.println(personRepository.findByFirstNameLike("Carly"));
   }
 
+  /**
+   * containing  match
+   */
   @Test
   void findByFirstNameContaining(){
     System.out.println(personRepository.findByFirstNameContaining("Carly"));
+  }
+
+  
+  @Test
+  void findByLastName(){
+    final PersonPartialDTO byLastName = personRepository.findByLastName("Marling",PersonPartialDTO.class);
+    System.out.println(byLastName);
   }
 }

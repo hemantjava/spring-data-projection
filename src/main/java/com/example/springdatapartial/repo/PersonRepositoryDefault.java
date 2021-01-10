@@ -17,4 +17,13 @@ public interface PersonRepositoryDefault {
   Person readTop3ByOrderByIdDesc();
 
   Person getTop5ByOrderByIdAsc();
+
+  /**
+   * dynamice projection
+   * @param lastName
+   * @param type
+   * @param <T>
+   * @return
+   */
+  <T> T findByLastName(String lastName, Class<T> type);
 }
